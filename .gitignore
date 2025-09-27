@@ -1,0 +1,11 @@
+# Ignore environment files
+.env
+
+# Ignore dependencies for backend
+backend/node_modules/
+
+# Ignore dependencies for frontend (my-app)
+my-app/node_modules/
+
+# Optional: ignore logs
+*.log
