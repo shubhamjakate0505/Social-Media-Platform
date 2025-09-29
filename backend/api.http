@@ -2,8 +2,19 @@ POST http://localhost:9090/register HTTP/1.1
 Content-Type: application/json
 
 {
-  "username": "shubham123",
-  "password": "mypassword",
-  "email": "shubham@example.com",
+  "username": "shubha123",
+  "password": "password",
+  "email": "shubha@example.com",
   "name": "Shubham Jakate"
+}
+
+
+###
+POST http://localhost:9090/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email":"shubha@example.com",
+  "password":"password"
+
 }
