@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(postRoutes);
 app.use(userRoutes);
 
-
+app.use(express.static("uploads"))
 
 const start=async()=>{
         const connectDB=await mongoose.connect("mongodb+srv://shubhamjakate0505_db_user:12345@linkdin.xhqfshe.mongodb.net/?retryWrites=true&w=majority&appName=Linkdin")

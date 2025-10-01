@@ -4,7 +4,7 @@ import { activeCheck } from "../controllers/posts.controller.js";
 import { getUserAndProfile, login, register } from "../controllers/user.controller.js";
 import multer from "multer";
 import { uploadProfilePicture } from "../controllers/user.controller.js";
-import {updateUserProfile,updateProfileData,getAllUserProfile} from "../controllers/user.controller.js";
+import {updateUserProfile,updateProfileData,getAllUserProfile,downloadProfile} from "../controllers/user.controller.js";
 
 
 
@@ -33,5 +33,6 @@ router.route('/update_profile').post(updateUserProfile);
 router.route('/get_user_and_profile').get(getUserAndProfile)
 router.route('/update_profile_data').post(updateProfileData);
 router.route('/user/get_all_users').get(getAllUserProfile);
+router.route('/user/download_resume').get(downloadProfile);
 
 export default router;
