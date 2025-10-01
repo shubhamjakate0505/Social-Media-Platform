@@ -38,6 +38,7 @@ const ProfileSchema=new mongoose.Schema({
     userID:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'User'
+        
     },
     bio:{
         type:String,
