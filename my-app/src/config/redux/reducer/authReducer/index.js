@@ -25,8 +25,9 @@ const authSlice=createSlice({
             initialState,
             handelLoginUser: (state)=>{
                 state.message="hello"
-            
-
+        },
+        emptyMessage:(state)=>{
+            state.message=""
         }
 
     },
@@ -57,15 +58,16 @@ const authSlice=createSlice({
             state.isLoading=false,
             state.isError=false,
             state.isSuccess=true,
-            state.loggedIn=true,
-            state.message="Register is Successful"  
+            state.message={
+            message:"Register is Successful,Please log in"
+            }  
         })
         .addCase(registerUser.rejected,(state,action)=>{
             state.isLoading=false,
             state.isError=true,
             state.message=action.payload
-        })
+        })  
     }
 })
-
-export default authSlice.reducer
+export const {reset,emptyMessage}=authSlice.actions;
+export default authSlice.reducer;
