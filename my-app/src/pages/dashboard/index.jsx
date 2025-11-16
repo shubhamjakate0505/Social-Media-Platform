@@ -18,7 +18,8 @@ export default function Dashboard() {
 
 
   
-
+  const postState=useSelector((state)=>state.PostReducer)
+  console.log("POST STATE => ", postState);
     
 
    
@@ -52,7 +53,7 @@ export default function Dashboard() {
       
       <DashboardLayout>
         <div className={styles.scrollComponent}>
-       
+       <div className={styles.wrapper}>
             <div className={styles.createPostContainer}>
               <img className={styles.userProfile}width={100} src={`${BASE_URl}/${authState.user.userID.profilePicture}`} alt="" />
               <textarea onChange={(e)=>setPostContent(e.target.value)} value={postContent} placeholder={"Whats in your mind"} className={styles.textarea} name="" id=""></textarea>
@@ -71,6 +72,22 @@ export default function Dashboard() {
               }
               
             </div>
+
+              <div className={styles.postContainer}>
+                {postState.posts.map((post)=>{
+                  return (
+                  <div key={post._id} className={styles.singleCard}>
+                      <div className={styles.singleCard__ProfileContainer}>
+                        <img className={styles.userProfile} src={`${BASE_URl}/${authState.user.userID.profilePicture}`} alt="" />
+                        <p>{post.userID.name}</p>
+                      </div>
+                  </div>
+                  )
+                }) }
+              </div>
+
+           </div>
+
         </div>
       </DashboardLayout>
       
