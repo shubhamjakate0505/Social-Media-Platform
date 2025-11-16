@@ -16,7 +16,7 @@ export const getAllPosts=createAsyncThunk(
 
 
 export const createPost=createAsyncThunk(
-    "post/createPost",
+    "post/createPost",  
     async(userData,thunkAPI)=>{
         const{file,body}=userData;
 
@@ -38,6 +38,23 @@ export const createPost=createAsyncThunk(
             }
         }catch(err){
             return thunkAPI.fulfillWithValue(response.data);
+        }
+    }
+)
+
+export const deletePost=createAsyncThunk(
+    "Post/deletePost",
+    async(post_id,thunkAPI)=>{
+        try{
+            const response=await clientServer.delete("/delete_post",{
+                data:{
+                    token:localStorage.getItem("token"),
+                    post_id:post_id.post_id
+                }
+            });
+            return thunkAPI.fulfillWithValue(response.data)
+        }catch(err){
+            return thunkAPI.fulfillWithValue("something went wrong")
         }
     }
 )

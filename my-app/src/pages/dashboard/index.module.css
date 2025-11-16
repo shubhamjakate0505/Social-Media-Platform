@@ -58,9 +58,34 @@ cursor: pointer;
     display: flex;
     flex-direction: column;
     gap: 1.3rem;
+    max-width: 90%;
 }
 .singleCard{
     width: 100%;
     border-radius: 10px 10px 0px 0px;
     border-bottom: 1px solid rgb(179, 179, 179);
+}
+.singleCard__ProfileContainer{
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.2rem;
+    padding-right: 3.4rem;
+}
+.singleCard__ProfileContainer>img{
+    width: 10%;
+    border-radius: 50%;
+}
+.singleCard_image{
+    width: 100%;
+    padding-top: 0.6rem;
+    height: fit-content;
+    overflow: hidden;
+}
+.singleCard_image>img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 20px;
+
 }
