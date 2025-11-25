@@ -3,6 +3,9 @@ import User from '../models/user.model.js'
 import bcrypt from 'bcrypt'
 import Profile from '../models/profile.model.js';
 import Post from '../models/posts.model.js'
+import Comment from '../models/comments.model.js';
+// import Comment from '../models/comment.model.js';
+
 // import { use } from 'react';
 // import { use } from 'react';
 
@@ -89,34 +92,39 @@ export const commentPost=async(req,res)=>{
             return res.status(404).json({message:"post not found"})
         }
 
-        const commit=new Comment({
-            userID:user._id,
-            postid:post_id,
-            Comment:commentBody
+        const comment=new Comment({
+            userId:user._id,
+            postId:post_id,
+            body:commentBody
         })
 
-        await commit.save();
+        await comment.save();
         return res.status(200).json({message:"commit added"});
 
-    }catch{
+    }catch(error){
         return res.status(500).json({message:error.message});
     }
 }
 
 export const get_comments_by_post=async(req,res)=>{
-    const {post_id}=req.body;
+    const {post_id}=req.query;
     try {
         const post=await Post.findOne({_id:post_id});
         if(!post){
             return res.status(400).json({message:"Post not found"})
         }
-        return res.status({comments:post.comments})
+
+        const comments=await Comment
+        .find({postId:post_id})
+        .populate("userId", "username name profilePicture")
+            
+       console.log("comments", comments)
+        return res.json(comments.reverse())
 
     } catch (error) {
         return res.status(500).json({message:error.message});
     }
 }
-
 export const delete_comment_of_user=async(req,res)=>{
     const{token,comment_id}=req.body;
     try{

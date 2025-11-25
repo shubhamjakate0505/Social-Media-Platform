@@ -299,3 +299,23 @@ export const acceptConnectionRequest=async(req,res)=>{
         return res.status(500).json({message:error.message});
     }
 }
+
+export const getuserProfileAndUserBasedonUsername = async (req, res) => {
+    const { username } = req.query;
+
+    try {
+        const user = await User.findOne({ username });
+
+        if (!user) {
+            return res.status(404).json({ message: "user not found" });
+        }
+
+        const userProfile = await Profile.findOne({ userID: user._id })
+            .populate("userID", "name username email profilePicture");
+
+        return res.json({ profile: userProfile });
+
+    } catch (err) {
+        return res.status(500).json({ message: err.message });
+    }
+};
